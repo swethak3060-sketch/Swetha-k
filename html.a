@@ -1,12 +1,187 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPEhtml>
+<html lang="en">
 <head>
-<title>Page Title</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Online Food Ordering System</title>
+<style>
+body {
+font-family: Arial, sans-serif;
+margin: 0;
+padding: 0;
+background: #f8f8f8;
+}
+header {
+background: #ff5722;
+color: white;
+padding: 15px;
+text-align: center;
+}
+nav {
+background: #333;
+padding: 10px;
+text-align: center;
+}
+nav a {
+color: white;
+text-decoration: none;
+margin: 15px;
+font-size: 18px;
+}
+.container {
+width: 90%;
+margin: auto;
+padding: 20px;
+}
+.food-items {
+display: flex;
+flex-wrap: wrap;
+gap: 20px;
+justify-content: center;
+}
+.food-card {
+background: white;
+width: 250px;
+border-radius: 10px;
+box-shadow: 0 0 10px rgba(0,0,0,0.1);
+overflow: hidden;
+text-align: center;
+padding-bottom: 15px;
+}
+.food-card img {
+width: 100%;
+height: 180px;
+object-fit: cover;
+}
+.food-card h3 {
+margin: 10px 0;
+}
+.food-card p {
+color: #555;
+padding: 0 10px;
+}
+.price {
+font-size: 20px;
+color: #ff5722;
+font-weight: bold;
+}
+button {
+background: #ff5722;
+color: white;
+border: none;
+padding: 10px 15px;
+margin-top: 10px;
+cursor: pointer;
+border-radius: 5px;
+}
+button:hover {
+background: #e64a19;
+}
+#cart {
+margin-top: 30px;
+background: white;
+padding: 20px;
+border-radius: 10px;
+box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+#cart ul {
+list-style: none;
+padding: 0;
+}
+#cart ul li {
+padding: 8px 0;
+border-bottom: 1px solid #ddd;
+}
+footer {
+text-align: center;
+background: #333;
+color: white;
+padding: 15px;
+margin-top: 30px;
+}
+</style>
 </head>
 <body>
-
-<h1>My First Heading</h1>
-<p>My first paragraph.</p>
-
+<header>
+<h1>Online Food Ordering System</h1>
+<p>Delicious food at your doorstep</p>
+</header>
+<nav>
+<a href="#">Home</a>
+<a href="#">Menu</a>
+<a href="#">Cart</a>
+<a href="#">Contact</a>
+</nav>
+<div class="container">
+<h2>Our Menu</h2>
+<div class="food-items">
+<div class="food-card">
+<img src="https://via.placeholder.com/250x180?text=Pizza" alt="Pizza">
+<h3>Pizza</h3>
+<p>Cheesy and delicious pizza with fresh toppings.</p>
+<div class="price">₹200</div>
+<button onclick="addToCart('Pizza', 200)">Add to Cart</button>
+</div>
+<div class="food-card">
+<img src="https://via.placeholder.com/250x180?text=Burger" alt="Burger">
+<h3>Burger</h3>
+<p>Crispy burger with fresh vegetables and cheese.</p>
+<div class="price">₹120</div>
+<button onclick="addToCart('Burger', 120)">Add to Cart</button>
+</div>
+<div class="food-card">
+<img src="https://via.placeholder.com/250x180?text=Pasta" alt="Pasta">
+<h3>Pasta</h3>
+<p>Creamy pasta with rich sauce and herbs.</p>
+<div class="price">₹150</div>
+<button onclick="addToCart('Pasta', 150)">Add to Cart</button>
+</div>
+<div class="food-card">
+<img src="https://via.placeholder.com/250x180?text=Sandwich" alt="Sandwich">
+<h3>Sandwich</h3>
+<p>Tasty sandwich loaded with fresh ingredients.</p>
+<div class="price">₹90</div>
+<button onclick="addToCart('Sandwich', 90)">Add to Cart</button>
+</div>
+</div>
+<div id="cart">
+<h2>Your Cart</h2>
+<ul id="cart-items"></ul>
+<h3>Total: ₹<span id="total">0</span></h3>
+<button onclick="placeOrder()">Place Order</button>
+</div>
+</div>
+<footer>
+<p>&copy; 2026 Online Food Ordering System | Designed for Mini Project</p>
+</footer>
+<script>
+let cart = [];
+let total = 0;
+function addToCart(item, price) {
+cart.push({ item, price });
+total += price;
+displayCart();
+}
+function displayCart() {
+let cartItems = document.getElementById("cart-items");
+cartItems.innerHTML = "";
+cart.forEach((food, index) => {
+let li = document.createElement("li");
+li.textContent = food.item + "- ₹" + food.price;
+cartItems.appendChild(li);
+});
+document.getElementById("total").textContent = total;
+}
+function placeOrder() {
+if (cart.length === 0) {
+alert("Your cart is empty!");
+} else {
+alert("Order placed successfully! Total amount: ₹" + total);
+cart = [];
+total = 0;
+displayCart();
+}
+}
+</script>
 </body>
-</html>
+</html
